@@ -1,10 +1,15 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
 
     private BigDecimal balance;
+
+    private List<Operation> operations;
 
     public Account(BigDecimal balance) {
         this.balance = balance;
@@ -12,6 +17,13 @@ public class Account {
 
     public void deposit(BigDecimal amount) {
         balance = balance.add(amount);
+        addOperation(new Operation(LocalDateTime.now(), amount, balance, Action.Deposit));
+    }
+
+    private void addOperation(Operation operation) {
+        if (operations == null)
+            operations = new ArrayList<>();
+        operations.add(operation);
     }
 
     public void withdrawal(BigDecimal amount) {
@@ -24,4 +36,7 @@ public class Account {
         return balance;
     }
 
+    public List<Operation> getOperationsHistory() {
+        return operations;
+    }
 }

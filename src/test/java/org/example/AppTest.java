@@ -4,6 +4,7 @@ package org.example;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,12 +28,23 @@ public class AppTest {
     }
 
 
-
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_business_exception_when_withdrawal_exceed_ceiling() {
         Account account = new Account(BigDecimal.ZERO);
         account.withdrawal(new BigDecimal(20));
         assertThat(account.getBalance()).isEqualTo(new BigDecimal(0));
+    }
 
+    @Test
+    public void should_check_last_deposit_history() {
+        Account account = new Account(BigDecimal.ZERO);
+        account.deposit(new BigDecimal(100));
+        List<Operation> operationsHistory = account.getOperationsHistory();
+        assertThat(operationsHistory).isNotNull();
+        assertThat(operationsHistory).isNotEmpty();
+        Operation operation = operationsHistory.get(0);
+        assertThat(operation.action()).isEqualTo(Action.Deposit);
+        assertThat(operation.amount()).isEqualTo(new BigDecimal(100));
+        assertThat(operation.balance()).isEqualTo(new BigDecimal(100));
     }
 }
