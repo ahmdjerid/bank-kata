@@ -1,6 +1,7 @@
-package org.example;
+package org.bank.domain;
 
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -40,8 +41,8 @@ public class AppTest {
         Account account = new Account(BigDecimal.ZERO);
         account.deposit(new BigDecimal(100));
         List<Operation> operationsHistory = account.getOperationsHistory();
-        assertThat(operationsHistory).isNotNull();
-        assertThat(operationsHistory).isNotEmpty();
+        Assertions.assertThat(operationsHistory).isNotNull();
+        Assertions.assertThat(operationsHistory).isNotEmpty();
         Operation operation = operationsHistory.get(0);
         assertThat(operation.action()).isEqualTo(Action.Deposit);
         assertThat(operation.amount()).isEqualTo(new BigDecimal(100));
@@ -53,8 +54,8 @@ public class AppTest {
         Account account = new Account(new BigDecimal(100));
         account.withdrawal(new BigDecimal(20));
         List<Operation> operationsHistory = account.getOperationsHistory();
-        assertThat(operationsHistory).isNotNull();
-        assertThat(operationsHistory).isNotEmpty();
+        Assertions.assertThat(operationsHistory).isNotNull();
+        Assertions.assertThat(operationsHistory).isNotEmpty();
         Operation operation = operationsHistory.get(0);
         assertThat(operation.action()).isEqualTo(Action.Withdrawal);
         assertThat(operation.amount()).isEqualTo(new BigDecimal(20));

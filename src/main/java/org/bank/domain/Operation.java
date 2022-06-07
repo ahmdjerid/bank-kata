@@ -1,4 +1,4 @@
-package org.example;
+package org.bank.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

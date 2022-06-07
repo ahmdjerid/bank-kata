@@ -1,4 +1,4 @@
-package org.example;
+package org.bank.domain;
 
 /**
  * Hello world!
