@@ -47,4 +47,17 @@ public class AppTest {
         assertThat(operation.amount()).isEqualTo(new BigDecimal(100));
         assertThat(operation.balance()).isEqualTo(new BigDecimal(100));
     }
+
+    @Test
+    public void should_check_last_withdrawal_history() {
+        Account account = new Account(new BigDecimal(100));
+        account.withdrawal(new BigDecimal(20));
+        List<Operation> operationsHistory = account.getOperationsHistory();
+        assertThat(operationsHistory).isNotNull();
+        assertThat(operationsHistory).isNotEmpty();
+        Operation operation = operationsHistory.get(0);
+        assertThat(operation.action()).isEqualTo(Action.Withdrawal);
+        assertThat(operation.amount()).isEqualTo(new BigDecimal(20));
+        assertThat(operation.balance()).isEqualTo(new BigDecimal(80));
+    }
 }
