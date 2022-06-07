@@ -14,11 +14,14 @@ public class Account {
         balance = balance.add(amount);
     }
 
+    public void withdrawal(BigDecimal amount) {
+        if (amount.compareTo(balance) > 0)
+            throw new IllegalArgumentException("withdrawal denied ");
+        balance = balance.subtract(amount);
+    }
+
     public BigDecimal getBalance() {
         return balance;
     }
 
-    public void withdrawal(BigDecimal amount) {
-        balance = balance.subtract(amount);
-    }
 }

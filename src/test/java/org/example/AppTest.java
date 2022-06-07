@@ -26,4 +26,13 @@ public class AppTest {
         assertThat(account.getBalance()).isEqualTo(new BigDecimal(80));
     }
 
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_business_exception_when_withdrawal_exceed_ceiling() {
+        Account account = new Account(BigDecimal.ZERO);
+        account.withdrawal(new BigDecimal(20));
+        assertThat(account.getBalance()).isEqualTo(new BigDecimal(0));
+
+    }
 }
