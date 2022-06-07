@@ -18,4 +18,12 @@ public class AppTest {
         account.deposit(new BigDecimal(100));
         assertThat(account.getBalance()).isEqualTo(new BigDecimal(100));
     }
+
+    @Test
+    public void should_make_withdrawal() {
+        Account account = new Account(new BigDecimal(100));
+        account.withdrawal(new BigDecimal(20));
+        assertThat(account.getBalance()).isEqualTo(new BigDecimal(80));
+    }
+
 }
