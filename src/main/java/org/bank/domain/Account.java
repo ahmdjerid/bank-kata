@@ -17,7 +17,7 @@ public class Account {
 
     public void deposit(BigDecimal amount) {
         balance = balance.add(amount);
-        addOperation(new Operation(LocalDateTime.now(), amount, balance, Action.Deposit));
+        addOperation(new Operation(LocalDateTime.now(), amount, balance, Action.DEPOSIT));
     }
 
     private void addOperation(Operation operation) {
@@ -30,7 +30,7 @@ public class Account {
         if (amount.compareTo(balance) > 0)
             throw new IllegalArgumentException("withdrawal denied ");
         balance = balance.subtract(amount);
-        addOperation(new Operation(LocalDateTime.now(), amount, balance, Action.Withdrawal));
+        addOperation(new Operation(LocalDateTime.now(), amount, balance, Action.WITHDRAWAL));
 
     }
 

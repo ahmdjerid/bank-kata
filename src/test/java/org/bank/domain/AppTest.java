@@ -44,7 +44,7 @@ public class AppTest {
         Assertions.assertThat(operationsHistory).isNotNull();
         Assertions.assertThat(operationsHistory).isNotEmpty();
         Operation operation = operationsHistory.get(0);
-        assertThat(operation.action()).isEqualTo(Action.Deposit);
+        assertThat(operation.action()).isEqualTo(Action.DEPOSIT);
         assertThat(operation.amount()).isEqualTo(new BigDecimal(100));
         assertThat(operation.balance()).isEqualTo(new BigDecimal(100));
     }
@@ -57,7 +57,7 @@ public class AppTest {
         Assertions.assertThat(operationsHistory).isNotNull();
         Assertions.assertThat(operationsHistory).isNotEmpty();
         Operation operation = operationsHistory.get(0);
-        assertThat(operation.action()).isEqualTo(Action.Withdrawal);
+        assertThat(operation.action()).isEqualTo(Action.WITHDRAWAL);
         assertThat(operation.amount()).isEqualTo(new BigDecimal(20));
         assertThat(operation.balance()).isEqualTo(new BigDecimal(80));
     }
